@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CalculatorService.API.Models;
 using CalculatorService.Core.Interfaces;
 using CalculatorService.Core.Models;
-using System.Text.Json;
 using CalculatorService.Core.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace CalculatorService.API.Controllers;
 
@@ -10,24 +11,18 @@ namespace CalculatorService.API.Controllers;
 [Route("api/[controller]")]
 public class CalculatorController : ControllerBase
 {
-    private readonly InstructionExecutor _executor;
+    private readonly IInstructionExecutor _executor;
 
-    public CalculatorController(InstructionExecutor executor)
+    public CalculatorController(IInstructionExecutor executor)
     {
         _executor = executor;
     }
 
     [HttpPost("execute")]
-    public async Task<IActionResult> Execute([FromBody] List<Instruction> instructions)
+    public async Task<ExecuteResult> Execute([FromBody] List<Instruction> instructions)
     {
-        try
-        {
-            var result = await _executor.ExecuteInstructionsAsync(instructions);
-            return Ok(new { items = result.Select(r => new { var = r.Var, value = r.Value }) });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { error = ex.Message });
-        }
+        var result = await _executor.ExecuteInstructionsAsync(instructions);
+        return new ExecuteResult { Items = result };
+
     }
 }

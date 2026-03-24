@@ -3,7 +3,7 @@ using CalculatorService.Core.Models;
 
 namespace CalculatorService.Core.Services;
 
-public class InstructionExecutor
+public class InstructionExecutor: IInstructionExecutor
 {
     private readonly ICommandFactory _commandFactory;
 

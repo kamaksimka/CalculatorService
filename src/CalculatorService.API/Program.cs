@@ -11,10 +11,10 @@ builder.Services.AddSwaggerGen();
 
 // Register core services
 builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
-builder.Services.AddSingleton<InstructionExecutor>();
+builder.Services.AddSingleton<IInstructionExecutor,InstructionExecutor>();
 
 // Add gRPC
-//builder.Services.AddGrpc();
+builder.Services.AddGrpc();
 
 var app = builder.Build();
 
@@ -25,8 +25,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseAuthorization();
 app.MapControllers();
 
 // Map gRPC service
