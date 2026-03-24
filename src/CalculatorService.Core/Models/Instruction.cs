@@ -8,9 +8,9 @@ namespace CalculatorService.Core.Models
 {
     public class Instruction
     {
-        public string Type { get; set; } = string.Empty;
+        public required string Type { get; set; }
         public string? Op { get; set; }
-        public string? Var { get; set; }
+        public required string Var { get; set; }
         public object? Left { get; set; }
         public object? Right { get; set; }
     }

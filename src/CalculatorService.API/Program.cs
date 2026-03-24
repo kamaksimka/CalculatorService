@@ -1,15 +1,24 @@
+using CalculatorService.Core.Interfaces;
+using CalculatorService.Core.Services;
+using CalculatorService.API.GrpcServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Register core services
+builder.Services.AddSingleton<ICommandFactory, CommandFactory>();
+builder.Services.AddSingleton<InstructionExecutor>();
+
+// Add gRPC
+//builder.Services.AddGrpc();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure HTTP pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +26,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+
+// Map gRPC service
+app.MapGrpcService<CalculatorGrpcService>();
 
 app.Run();

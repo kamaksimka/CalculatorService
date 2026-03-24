@@ -1,0 +1,34 @@
+﻿syntax = "proto3";
+
+package calculator;
+
+service CalculatorServiceGrpc {
+  rpc ExecuteInstructions (InstructionListGrpc) returns (PrintResultListGrpc);
+}
+
+message InstructionGrpc {
+  string type = 1;
+  string op = 2;
+  string var = 3;
+  oneof left {
+    int64 left_int = 4;
+    string left_var = 5;
+  }
+  oneof right {
+    int64 right_int = 6;
+    string right_var = 7;
+  }
+}
+
+message InstructionListGrpc {
+  repeated InstructionGrpc instructions = 1;
+}
+
+message PrintResultGrpc {
+  string var = 1;
+  int64 value = 2;
+}
+
+message PrintResultListGrpc {
+  repeated PrintResultGrpc items = 1;
+}

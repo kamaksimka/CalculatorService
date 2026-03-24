@@ -7,7 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Proto\calculator.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.76.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" Version="0.8.25" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CalculatorService.Core\CalculatorService.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Proto\calculator.proto" GrpcServices="Server" />
   </ItemGroup>
 
 </Project>

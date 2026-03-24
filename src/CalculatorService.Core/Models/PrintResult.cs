@@ -8,6 +8,17 @@ namespace CalculatorService.Core.Models
 {
     public class PrintResult
     {
+        public PrintResult()
+        {
+            
+        }
+
+        public PrintResult(string var,long value)
+        {
+            Var = var;
+            Value = value;
+        }
+
         public string Var { get; set; } = string.Empty;
         public long Value { get; set; }
     }
