@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CalculatorService.Core.Commands
 {
-    internal class AddCommand: ICommand
+    public class AddCommand: ICommand
     {
         public async Task<long> ExecuteAsync(long left, long rigth)
         {

@@ -15,9 +15,16 @@ public class CalculatorEngine
     {
         _commandFactory = commandFactory;
 
-        _calcInstructions = instructions
+        try
+        {
+            _calcInstructions = instructions
             .Where(i => i.Type == "calc" && !string.IsNullOrEmpty(i.Var))
             .ToDictionary(i => i.Var!);
+        }
+        catch (ArgumentException ex) {
+            throw new InvalidOperationException("В одну и ту же переменную нельзя повторно записать данные");
+        }
+        
 
         _printVariables = instructions
             .Where(i => i.Type == "print" && !string.IsNullOrEmpty(i.Var))
