@@ -1,4 +1,4 @@
-namespace CalculatorService
+namespace CalculatorService.API
 {
     public class WeatherForecast
     {

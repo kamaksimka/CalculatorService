@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="CalculatorService/CalculatorService.csproj" />
+  <Project Path="CalculatorService.API/CalculatorService.API.csproj" Id="42b83ad3-dd8a-47d3-9c3a-6cbc602f8ad7" />
+  <Project Path="CalculatorService.Core/CalculatorService.Core.csproj" Id="230b7e28-3eda-482e-a162-08aaf73bc5f3" />
+  <Project Path="CalculatorService.Tests/CalculatorService.Tests.csproj" Id="ebc85f7b-7b47-4077-90c5-b524bc67adce" />
 </Solution>
